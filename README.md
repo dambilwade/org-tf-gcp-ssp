@@ -13,5 +13,6 @@ Provide SSH access to the provisioned VM to any non GCP user having valid SSH ke
 CI-CD Integration
 Resources to be created in a new GCP project each time the TF scripts are triggered - This is manadatory if the scripts are intended to be used for a Developer Portal for Self Service Provisioning
 Management Project & Management Users - Needed if the script is intended to be used for Developer Portal - Self Service Provisioning
+Remote host the state file 
 
 
