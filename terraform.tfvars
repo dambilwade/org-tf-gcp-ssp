@@ -5,7 +5,7 @@ instance_map = {
   "firstVM" = {
     instance_name_value = "vm-foo00-first"
   }
-  /*"secondVM" = {
+  "secondVM" = {
     instance_name_value = "vm-bar11-second"
-  }*/
+  }
 }

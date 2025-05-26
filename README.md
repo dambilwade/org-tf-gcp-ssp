@@ -1,5 +1,13 @@
 # tf-gcp-ssp
-terraform declarative files to provision GCP resources for a Developer Portal
+Demo of Terraform declarative files to provision GCP resources
 
-Aims to provision following resources:
-Set A - Compute, Storage Block, Storage Bucket, Network Route, Firewall Rules, IAM
+The script performs the following functions 
+Provisions two e1-micro VMs in US East 1 Region
+The VMs have 10G disk & default network routes + firewall Rules
+Outputs the Assigned IPs
+
+TODOs:
+Create a Bucket
+Provide SSH access to the provisioned VM to any non GCP user having valid SSH keys
+
+

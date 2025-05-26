@@ -24,12 +24,20 @@ module "compute" {
 
 }
 
-  output "all" {
-    
+module "bucket" {
 
+  for_each = var.instance_map
+  source="./bucket"
+  bucket_name = each.value.instance_name_value
+}
+
+  output "ComputeAll" {
     value = module.compute
   }
 
+  output "BucketAll" {
+    value = module.bucket
+  }
 
 module "ops_agent_policy" {
   source          = "github.com/terraform-google-modules/terraform-google-cloud-operations/modules/ops-agent-policy"
