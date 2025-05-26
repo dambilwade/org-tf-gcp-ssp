@@ -1,4 +1,4 @@
-# tf-gcp-ssp
+Self Service Developer Portal - Google Cloud Platform : Using Terraform
 Demo of Terraform declarative files to provision GCP resources
 
 The script performs the following functions 
@@ -8,6 +8,7 @@ Creates two Bucket
 Outputs the Assigned IPs & Bucket Names
 
 TODOs:
+
 Fine Grained access to provisioned resources
 Provide SSH access to the provisioned VM to any non GCP user having valid SSH keys
 CI-CD Integration
