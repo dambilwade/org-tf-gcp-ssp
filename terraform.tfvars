@@ -1,5 +1,5 @@
-service_account = "terraform-ssp@wso2-177909.iam.gserviceaccount.com"
-project_id = "wso2-177909"
+service_account = "sa-project2@proj-2025-461014.iam.gserviceaccount.com"
+project_id = "proj-2025-461014"
 
 instance_map = {
   "firstVM" = {

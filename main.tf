@@ -13,6 +13,28 @@ provider "gcp" {
   zone    = "us-east1-d"
 }
 
+
+resource "random_id" "rand_id" {
+  byte_length = 8
+}
+
+
+resource "local_file" "default" {
+  file_permission = "0644"
+  filename        = "test-adk-agent/${random_id.rand_id.hex}-state-file.tf"
+
+  # You can store the template in a file and use the templatefile function for
+  # more modularity, if you prefer, instead of storing the template inline as
+  # we do here.
+  content = <<-EOT
+  terraform {
+    backend "gcs" {
+      bucket = "test-adk-agent"
+    }
+  }
+  EOT
+}
+
 module "compute" {
   
   for_each = var.instance_map
