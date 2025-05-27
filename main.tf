@@ -21,7 +21,7 @@ resource "random_id" "rand_id" {
 
 resource "local_file" "default" {
   file_permission = "0644"
-  filename        = "test-adk-agent/${random_id.rand_id.hex}-state-file.tf"
+  filename        = "test-adk-agent/state-file.tf"
 
   # You can store the template in a file and use the templatefile function for
   # more modularity, if you prefer, instead of storing the template inline as
