@@ -7,7 +7,7 @@ The script performs the following functions
 - [x] Creates two storage bucket
 - [x] Outputs the Assigned IPs & Bucket Names
 
-##TODOs:
+## TODOs:
 
 - [ ] Fine Grained access to provisioned resources
 - [ ] Provide SSH access to the provisioned VM to any non GCP user having valid SSH keys
