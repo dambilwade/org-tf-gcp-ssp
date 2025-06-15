@@ -3,15 +3,14 @@
 
 resource "google_storage_bucket" bucket_name {
  name          = var.bucket_name
- location      = "us-east1"
+ location      = "${var.region}"
  storage_class = "STANDARD"
-
+ force_destroy = true
  uniform_bucket_level_access = true
 
  versioning {
     enabled = true
   }
-
 
 website {
     main_page_suffix = "index.html"
@@ -27,6 +26,11 @@ website {
 
   variable "bucket_name" {
     description = "Name of the bucket"
+    type        = string
+}
+
+variable "region" {
+    description = "region to be used"
     type        = string
 }
 

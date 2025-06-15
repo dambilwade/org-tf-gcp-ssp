@@ -1,5 +1,5 @@
 
-resource "google_compute_instance" instance_name {
+resource "google_compute_instance" instance_name { //instance_name has a reference in main module and it's declared in the compute module
   boot_disk {
     auto_delete = true
     device_name = var.instance_name
@@ -23,13 +23,9 @@ resource "google_compute_instance" instance_name {
   }
 
   machine_type = "e2-micro"
-
   metadata = {
     enable-osconfig = "TRUE"
-    enable-oslogin  = "true"
-    /*"ssh-keys" = <<EOT
-    dev:ssh-ed25519 aaaabbbcccdddeeefffggghhhiiij dev
-    EOT*/
+    ssh-keys = "${var.username}:${var.public_key}" # This will be replaced with the actual username and public key
   }
 
   name = var.instance_name
@@ -41,7 +37,7 @@ resource "google_compute_instance" instance_name {
 
     queue_count = 0
     stack_type  = "IPV4_ONLY"
-    subnetwork  = "projects/${var.project_id}/regions/us-east1/subnetworks/default"
+    subnetwork  = "projects/${var.project_id}/regions/${var.region}/subnetworks/default"
   }
 
   scheduling {
@@ -53,7 +49,7 @@ resource "google_compute_instance" instance_name {
 
   service_account {
     email  = var.service_account
-    scopes = ["https://www.googleapis.com/auth/devstorage.read_only", "https://www.googleapis.com/auth/logging.write", "https://www.googleapis.com/auth/monitoring.write", "https://www.googleapis.com/auth/service.management.readonly", "https://www.googleapis.com/auth/servicecontrol", "https://www.googleapis.com/auth/trace.append"]
+    scopes = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 
   shielded_instance_config {
@@ -63,7 +59,8 @@ resource "google_compute_instance" instance_name {
   }
 
   tags = ["http-server", "https-server"]
-  zone = "us-east1-d"
+  zone = "${var.zone}"
+  allow_stopping_for_update = true
 }
 
 
