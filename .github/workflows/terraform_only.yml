@@ -41,8 +41,13 @@ jobs:
         with:
           version: '>= 363.0.0'
 
+      - name: 'Perform the login'
+        run: 'gcloud auth application-default login'
+
+
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
+
 
 
 
