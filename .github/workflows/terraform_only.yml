@@ -17,19 +17,36 @@ permissions:
   
 jobs:
   terraform:
-
     runs-on: ubuntu-latest
 
+
+
+
+
+
+
     steps:
+      - name: Clone the gcloud auth libraries
+        uses: 'actions/checkout@v4'
+
+      - name: Auth config and execution
+        uses: 'google-github-actions/auth@v2'
+        
+        with:
+          project_id: 'eternal-argon-461501-a8'
+          credentials_json: '${{secrets.CREDENTIALS_JSON}}' # Replace with the name of your GitHub Actions secret
+
+
+
+
+
       - name: Checkout
         uses: actions/checkout@main
 
-     
       - name: Show Inputs
         run: |
           echo "ACTION='${{ github.event.inputs.agent_action }}'"
           echo "AGENT_NAME='${{ github.event.inputs.agent_identifier_name }}'"        
-
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
@@ -37,19 +54,16 @@ jobs:
           terraform_version: 1.7.5
 
       - name: Terraform Init with Local Backend
-
         run: |
           terraform init 
+
       - name: Terraform Validate
-        
         run: terraform validate
 
       - name: Terraform Plan
-        
         run: terraform plan -input=false -out=tfplan        
 
       - name: Terraform Apply or Destroy
-        
         run: |
           if [[ "${{ github.event.inputs.agent_action }}" == "destroy" ]]; then
             terraform destroy -auto-approve
@@ -97,8 +111,8 @@ jobs:
       - name: Commit tfvars and outputs (only on create)
         if: ${{ github.event.inputs.agent_action == 'create' }}
         run: |
-          git config --global user.email "eswar-lohith.bhukke@capgemini.com"
-          git config --global user.name "ebhukke"
+          git config --global user.email "a.dheerajj@gmail.com"
+          git config --global user.name "dambilwade"
           git fetch origin
           git checkout main
           git pull origin main
