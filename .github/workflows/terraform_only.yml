@@ -19,12 +19,6 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
-
-
-
-
-
-
     steps:
       - name: Clone the gcloud auth libraries
         uses: 'actions/checkout@v4'
@@ -34,15 +28,11 @@ jobs:
         
         with:
           project_id: 'eternal-argon-461501-a8'
-          credentials_json: '${{secrets.CREDENTIALS_JSON}}' # Replace with the name of your GitHub Actions secret
-
+          workload_identity_provider: projects/351592443/locations/global/workloadIdentityPools/providers/github-actions-provider
       - name: 'Set up Google Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
           version: '>= 363.0.0'
-
-      - name: 'Perform the login'
-        run: 'gcloud auth application-default login --quiet'
 
 
       - name: 'Use gcloud CLI'
