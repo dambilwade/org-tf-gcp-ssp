@@ -36,6 +36,15 @@ jobs:
           project_id: 'eternal-argon-461501-a8'
           credentials_json: '${{secrets.CREDENTIALS_JSON}}' # Replace with the name of your GitHub Actions secret
 
+      - name: 'Set up Google Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          version: '>= 363.0.0'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+
 
 
 
